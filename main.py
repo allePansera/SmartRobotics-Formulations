@@ -2,6 +2,8 @@
 #       ESEMPIO DI UTILIZZO
 # ================================
 from utils import calcola_jacobiana, dh_to_transformation_matrices
+import simpy as sp
+
 
 # Variabili simboliche
 q1, q2, q3 = sp.symbols('q1 q2 q3')
