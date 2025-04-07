@@ -1,5 +1,6 @@
 import sympy as sp
 
+
 # ================================
 #       UTILITY MATRICES
 # ================================
@@ -10,6 +11,7 @@ def transformation_matrix(rotation, translation):
     T[:3, 3] = translation
     return T
 
+
 def dh_matrix(d, theta, a, alpha):
     """Genera una matrice di trasformazione DH simbolica."""
     return sp.Matrix([
@@ -19,9 +21,11 @@ def dh_matrix(d, theta, a, alpha):
         [0,              0,                             0,                            1]
     ])
 
+
 def dh_to_transformation_matrices(dh_params):
     """Genera la lista di matrici DH da una lista di parametri [d, theta, a, alpha]."""
     return [dh_matrix(*params) for params in dh_params]
+
 
 # ================================
 #         JACOBIAN CALC
@@ -61,6 +65,7 @@ def calcola_jacobiana(transformations, joint_types):
     J = sp.Matrix.vstack(sp.Matrix.hstack(*Jv), sp.Matrix.hstack(*Jw))
     return T_matrices[-1], J
 
+
 # ================================
 #        ROTATION TO w
 # ================================
@@ -72,6 +77,7 @@ def rotation_to_angular_velocity(R, param_symbol, R_dot=None):
     S_w = R.T * R_dot
     w = sp.Matrix([S_w[2, 1], S_w[0, 2], S_w[1, 0]])
     return w
+
 
 # ================================
 #          RANK UTILITY
